@@ -4,3 +4,9 @@ const producto = {
     disponible : true
 
 }
+console.log(producto);
+producto.disponible = false;
+console.log(producto);
+
+delete producto.precio;
+console.log(producto);
