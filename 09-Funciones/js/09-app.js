@@ -6,4 +6,4 @@ const reproductor = {    // Esto serian un objeto
     }
 }
 
-reproductor.reproducir();
+reproductor.reproducir(a);
