@@ -6,14 +6,21 @@ const reproductor = {    // Esto serian un objeto
     },
     pausar: function(){
         console.log('Pausando...');
+    },
+    borrar: function(id){
+        console.log(`borrando cancion... ${id}`);
+    },
+    playList: function(nombre){
+        console.log(`Creando la playList de... ${nombre}`);
+    },
+    reproducirPlaylist: function(nombre){
+        console.log(`Reproduciondo playList ${nombre}`);
     }
 }
 
 reproductor.reproducir(30);
 reproductor.pausar();
+reproductor.borrar(30);
+reproductor.playList('lofi');
+reproductor.reproducirPlaylist('music lofi 1');
 
-reproductor.borrar = function(){
-    console.log('Borrando cancion...');
-}
-
-reproductor.borrar();
