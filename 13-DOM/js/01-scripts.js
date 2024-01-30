@@ -1,20 +1,57 @@
 let elemento;
 elemento = document;
 console.log(elemento);
+console.log('-------1-------');
 elemento = document.all;
 console.log(elemento);
+console.log('-------2-------');
 elemento = document.head;
 console.log(elemento);
+console.log('-------3-------');
 elemento = document.body;
 console.log(elemento);
+console.log('-------4-------');
 elemento = document.domain;
-
 console.log(elemento);
+console.log('-------5-------');
 elemento = document.forms;
-
-
-
-
-
-
+console.log(elemento);
+console.log('-------6-------');
+elemento = document.forms[0];
+console.log(elemento);
+console.log('-------7-------');
+elemento = document.forms[0].id;
+console.log(elemento);
+console.log('-------8-------');
+elemento = document.forms[0].method;
+console.log(elemento);
+console.log('-------9-------');
+elemento = document.forms[0].classList;
+console.log(elemento);
+console.log('-------10-------');
+elemento = document.forms[0].action;
+console.log(elemento);
+console.log('-------11-------');
+elemento = document.links;
+console.log(elemento);
+console.log('-------12-------');
+elemento = document.links[0].href;
+console.log(elemento);
+console.log('-------13-------');
+elemento = document.links[0].innerText;
+console.log(elemento);
+console.log('-------14-------');
+elemento = document.links[4];
+console.log(elemento);
+console.log('-------15-------');
+elemento = document.links[4].classList;
+console.log(elemento);
+console.log('-------16-------');
+elemento = document.links[4].className;
+console.log(elemento);
+console.log('-------17-------');
+elemento = document.images;
+console.log(elemento);
+console.log('-------18-------');
+elemento = document.scripts;
 console.log(elemento);
