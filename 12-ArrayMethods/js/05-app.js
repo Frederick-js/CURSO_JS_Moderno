@@ -6,3 +6,23 @@ const carrito = [ // y esto es un arreglo de objetos
     { nombre: 'Teclado', precio: 400 },
     { nombre: 'Celular', precio: 700 },
 ]
+console.log(carrito);
+
+// con un foreach
+let resultado = '';
+carrito.forEach((producto, index) =>{
+    if(producto.nombre === 'Tablet'){
+        resultado = carrito[index]
+    }
+});
+
+console.log(resultado);
+
+
+
+
+
+
+// .find
+const resultado2 = carrito.find(producto => producto.nombre === "Tablet");
+console.log(resultado2);
