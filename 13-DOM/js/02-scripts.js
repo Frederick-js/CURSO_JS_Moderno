@@ -1,6 +1,6 @@
 // seleccionar elementos por su clase
 console.log('-------1-----');
-const header = document.getElementsByClassName('header');
+const header = document.getElementsByClassName('header'); // getElementsByClassName retorna todos los resultados
 console.log(header);
 
 console.log('-------2-----');
