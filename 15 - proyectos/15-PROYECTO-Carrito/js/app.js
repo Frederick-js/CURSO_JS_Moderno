@@ -8,6 +8,7 @@ cargarEventListeners();
 function cargarEventListeners() {
   // Cuando agregas un curso presionando "Agregar al carrito"
   listaCursos.addEventListener("click", agregarCurso); //
+
 }
 
 // Funciones
@@ -35,13 +36,14 @@ function leerDatosCurso(curso) {
     if (existe) {
         // actualizamos la cantidad
         const cursos = articulosCarrito.map(curso => {
-
-            if (curso.id === infoCurso.id) {
+        if (curso.id === infoCurso.id) {
                 curso.cantidad++;
-                return curso;
+                return curso;  // retorna el objeto actualizado
+            } else {
+              return curso; // retorna los objetos que no son los duplicados
             }
         })
-
+        articulosCarrito = [...cursos]
     }else{
         // agrega elementos al arreglo de carrito
   articulosCarrito = [...articulosCarrito, infoCurso];
