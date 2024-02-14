@@ -6,9 +6,12 @@ document.addEventListener('DOMContentLoaded', function(){
     const inputMensaje = document.querySelector('#mensaje');
 
    // Asignar eventos
-   inputEmail.addEventListener('blur', function(){
-    console.log('Sali del input');
-   });
+   inputEmail.addEventListener('blur', validar);  // colocar validar sin() es llamar una funcion hasta que suceda el evento. colocando si o si llama la funcion
+   inputAsunto.addEventListener('blur', validar);
+   inputMensaje.addEventListener('blur', validar);
 
+    function validar(e){
+        console.log(e.target.value);
+    }
 
 });
