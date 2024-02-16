@@ -12,21 +12,23 @@ document.addEventListener('DOMContentLoaded', function(){
    inputMensaje.addEventListener('blur', validar);
 
     function validar(e){
+        
         if (e.target.value.trim() === '') {
-            mostrarAlerta();
+            mostrarAlerta(`El Campo ${e.target.id} es obligatorio`,e.target.parentElement);
         }else{
             console.log('Si hay algo');
         }
     }
 
 
-    function mostrarAlerta() {
+    function mostrarAlerta(mensaje, referencia) {
         // Generar alerta en HTML
         const error = document.createElement('P');
-        error.textContent = 'Hubo un error...'; // se agrega color de fondo
+        error.textContent = mensaje; // se agrega color de fondo
         error.classList.add('bg-red-600','text-white','p-2','text-center');
+
         // Inyectar al error del formulario
-        formulario.appendChild(error);
+        referencia.appendChild(error);
     }
 
 
