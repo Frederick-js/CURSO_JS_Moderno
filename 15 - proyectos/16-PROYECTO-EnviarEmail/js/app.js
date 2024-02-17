@@ -2,12 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   //Seleccionar los elementos de la interfaz
   const inputEmail = document.querySelector("#email");
   const inputAsunto = document.querySelector("#asunto");
+  const inputAutor = document.querySelector("#autor");
   const inputMensaje = document.querySelector("#mensaje");
   const formulario = document.querySelector("#formulario");
 
   // Asignar eventos
   inputEmail.addEventListener("blur", validar); // colocar validar sin() es llamar una funcion hasta que suceda el evento. colocando si o si llama la funcion
   inputAsunto.addEventListener("blur", validar);
+  inputAutor.addEventListener("blur", validar);
   inputMensaje.addEventListener("blur", validar);
 
   function validar(e) {
@@ -18,6 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       return;
     }
+   
+    if (e.target.id === 'email' && !validarEmail(e.target.value)) {
+      mostrarAlerta('El email no es valido', e.target.parentElement);
+      return;
+    }
+    
 
     limpiarAlerta(e.target.parentElement);
   }
@@ -41,4 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
       alerta.remove();
     }
   }
+
+  const validarEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const resultado = regex.test(email);
+    return resultado;
+  };
+
 });
