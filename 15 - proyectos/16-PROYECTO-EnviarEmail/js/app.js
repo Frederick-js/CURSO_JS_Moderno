@@ -16,13 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const formulario = document.querySelector("#formulario");
   const btnSubmit = document.querySelector("#formulario button[type='submit']");
   const btnReset = document.querySelector("#formulario button[type='reset']");
-
+  const spinner = document.querySelector("#spinner");
   
+console.log(spinner);
+
   // Asignar eventos
   inputEmail.addEventListener("input", validar); // colocar validar sin() es llamar una funcion hasta que suceda el evento. colocando si o si llama la funcion
   inputAsunto.addEventListener("input", validar);
   inputAutor.addEventListener("input", validar);
   inputMensaje.addEventListener("input", validar);
+
+  formulario.addEventListener('submit', enviarEmail);
+
 
   btnReset.addEventListener("click", function(e){
     e.preventDefault();
@@ -36,6 +41,16 @@ document.addEventListener("DOMContentLoaded", function () {
       formulario.reset();
       comprobarEmail();
   });
+
+
+  // funcion enviar email
+  function enviarEmail(e) {
+    e.preventDefault();
+    
+    spinner.classList.add('flex');
+    spinner.classList.remove('hidden');
+    
+  }
 
   function validar(e) {
     if (e.target.value.trim() === "") {
@@ -103,5 +118,5 @@ document.addEventListener("DOMContentLoaded", function () {
       btnSubmit.disabled = false;
     }
 
-    
+  
 });
