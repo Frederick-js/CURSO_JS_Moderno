@@ -22,8 +22,8 @@ console.log(spinner);
 
   // Asignar eventos
   inputEmail.addEventListener("input", validar); // colocar validar sin() es llamar una funcion hasta que suceda el evento. colocando si o si llama la funcion
-  inputAsunto.addEventListener("input", validar);
-  inputAutor.addEventListener("input", validar);
+  inputAsunto.addEventListener("input", validar); // 'blur' que es cuando sale del campo
+  inputAutor.addEventListener("input", validar);  // 'input' valida mientras se escribe
   inputMensaje.addEventListener("input", validar);
 
   formulario.addEventListener('submit', enviarEmail);
@@ -31,15 +31,8 @@ console.log(spinner);
 
   btnReset.addEventListener("click", function(e){
     e.preventDefault();
-
-      // reiniciar el objeto
-      email.email = '';
-      email.asunto = '';
-      email.autor = '';
-      email.mensaje = '';
-
-      formulario.reset();
-      comprobarEmail();
+      // reiniciar objeto
+      reiniciarObjeto();
   });
 
 
@@ -49,6 +42,12 @@ console.log(spinner);
     
     spinner.classList.add('flex');
     spinner.classList.remove('hidden');
+
+    setTimeout(()=>{
+      spinner.classList.remove('flex');
+      spinner.classList.add('hidden');
+      reiniciarObjeto();
+    }, 3000)
     
   }
 
@@ -118,5 +117,15 @@ console.log(spinner);
       btnSubmit.disabled = false;
     }
 
-  
+    function reiniciarObjeto() {
+      // reiniciar el objeto
+      email.email = '';
+      email.asunto = '';
+      email.autor = '';
+      email.mensaje = '';
+
+      formulario.reset();
+      comprobarEmail();
+    }
+
 });
