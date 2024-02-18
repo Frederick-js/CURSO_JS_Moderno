@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mensaje: ''
   };
 
-  console.log(email);
+  
   //Seleccionar los elementos de la interfaz
   const inputEmail = document.querySelector("#email");
   const inputAsunto = document.querySelector("#asunto");
@@ -15,13 +15,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputMensaje = document.querySelector("#mensaje");
   const formulario = document.querySelector("#formulario");
   const btnSubmit = document.querySelector("#formulario button[type='submit']");
+  const btnReset = document.querySelector("#formulario button[type='reset']");
 
-  console.log(btnSubmit);
+  
   // Asignar eventos
-  inputEmail.addEventListener("blur", validar); // colocar validar sin() es llamar una funcion hasta que suceda el evento. colocando si o si llama la funcion
-  inputAsunto.addEventListener("blur", validar);
-  inputAutor.addEventListener("blur", validar);
-  inputMensaje.addEventListener("blur", validar);
+  inputEmail.addEventListener("input", validar); // colocar validar sin() es llamar una funcion hasta que suceda el evento. colocando si o si llama la funcion
+  inputAsunto.addEventListener("input", validar);
+  inputAutor.addEventListener("input", validar);
+  inputMensaje.addEventListener("input", validar);
+
+  btnReset.addEventListener("click", function(e){
+    e.preventDefault();
+
+      // reiniciar el objeto
+      email.email = '';
+      email.asunto = '';
+      email.autor = '';
+      email.mensaje = '';
+
+      formulario.reset();
+      comprobarEmail();
+  });
 
   function validar(e) {
     if (e.target.value.trim() === "") {
@@ -82,9 +96,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (Object.values(email).includes('')) {
         btnSubmit.classList.add('opacity-50');
           btnSubmit.disabled = true;
-      }else{
-          btnSubmit.classList.remove('opacity-50');
-          btnSubmit.disabled = false;
+          return;
       }
+
+      btnSubmit.classList.remove('opacity-50');
+      btnSubmit.disabled = false;
     }
+
+    
 });
