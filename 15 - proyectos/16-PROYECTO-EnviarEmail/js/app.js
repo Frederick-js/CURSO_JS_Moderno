@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     asunto: "",
     autor: "",
     mensaje: "",
-    cc: "vacio"
+    cc: "vacio",
   };
 
   //Seleccionar los elementos de la interfaz
@@ -69,11 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
-// Funcion para escuchar el evento 
+  // Funcion para escuchar el evento
   function validar(e) {
-
     // Se valida si el input tiene o no contenido
-    if (e.target.value.trim() === "" && e.target.id !== 'cc') { // Con trim() quitamos los espacios vacios
+    if (e.target.value.trim() === "" && e.target.id !== "cc") {
+      // Con trim() quitamos los espacios vacios
       // Con evento.target.parentElement obtenemos el elemento Padre (DIV) del input donde se mostrara la alerta
       mostrarAlerta(
         `El Campo ${e.target.id} es obligatorio`,
@@ -85,42 +85,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Validamos que el input email tenga un contenido valido
-    if ((e.target.id === "email" || e.target.id === "cc") && !validarEmail(e.target.value)) {
-
+    if (
+      (e.target.id === "email" || e.target.id === "cc") &&
+      !validarEmail(e.target.value)
+    ) {
       mostrarAlerta("El email no es valido", e.target.parentElement);
 
       // email[e.target.id] = ""; // reiniciamos
 
-      e.target.id === 'cc' ?  email[ e.target.id ] = 'error' :  email[ evento.target.id ] = '';
-
-
+      e.target.id === "cc"
+        ? (email[e.target.id] = "error")
+        : (email[evento.target.id] = "");
 
       comprobarEmail(); // comprobamos el email
       return;
     }
 
-    
-
     limpiarAlerta(e.target.parentElement);
 
     // Asignar valores al objeto email
-    if ( e.target.id === 'cc' && e.target.value.trim() === '' ){
-
-      email.cc = 'vacio'
-
-  }else{
-      
-      email[ e.target.id ] = e.target.value.trim().toLowerCase();
-
-  }
+    if (e.target.id === "cc" && e.target.value.trim() === "") {
+      email.cc = "vacio";
+    } else {
+      email[e.target.id] = e.target.value.trim().toLowerCase();
+    }
     // comprobar el objeto del email
     comprobarEmail();
   }
 
   function mostrarAlerta(mensaje, referencia) {
-    
-     limpiarAlerta(referencia);
-
+    limpiarAlerta(referencia);
 
     // Generar alerta en HTML
     const error = document.createElement("P");
@@ -129,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Inyectar al error del formulario
     referencia.appendChild(error);
-  
   }
 
   // funcion limpiar alerta
@@ -147,24 +140,21 @@ document.addEventListener("DOMContentLoaded", function () {
     return resultado;
   };
 
-  function comprobarEmail(){
-     
-    let vacio = Object.values(email).includes('');
-    let error = Object.values(email).includes('error');
+  function comprobarEmail() {
+    let vacio = Object.values(email).includes("");
+    let error = Object.values(email).includes("error");
 
-    if ( vacio || error ){
+    if (vacio || error) {
+      btnSubmit.classList.add("opacity-50");
+      btnSubmit.disabled = true;
 
-        btnSubmit.classList.add('opacity-50');
-        btnSubmit.disabled = true;
-        
-        return; // Desactiva el boton enviar y termina la validacion
+      return; // Desactiva el boton enviar y termina la validacion
     }
 
     // En caso de que el objeto email este lleno se activa el boton enviar
-    btnSubmit.classList.remove('opacity-50');
+    btnSubmit.classList.remove("opacity-50");
     btnSubmit.disabled = false;
-
-}
+  }
 
   function reiniciarObjeto() {
     // reiniciar el objeto
