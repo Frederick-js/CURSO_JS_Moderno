@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     asunto: "",
     autor: "",
     mensaje: "",
-    cc: "false"
+    cc: "vacio"
   };
 
   //Seleccionar los elementos de la interfaz
@@ -69,21 +69,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
+// Funcion para escuchar el evento 
   function validar(e) {
-    if (e.target.value.trim() === "" && e.target.id !== 'cc') {
+
+    // Se valida si el input tiene o no contenido
+    if (e.target.value.trim() === "" && e.target.id !== 'cc') { // Con trim() quitamos los espacios vacios
+      // Con evento.target.parentElement obtenemos el elemento Padre (DIV) del input donde se mostrara la alerta
       mostrarAlerta(
         `El Campo ${e.target.id} es obligatorio`,
         e.target.parentElement
       );
       email[e.target.id] = ""; // reiniciamos
       comprobarEmail(); // comprobamos el email
-      return;
+      return; // Detiene la ejecucion del codigo si esta vacio
     }
 
+    // Validamos que el input email tenga un contenido valido
     if ((e.target.id === "email" || e.target.id === "cc") && !validarEmail(e.target.value)) {
 
       mostrarAlerta("El email no es valido", e.target.parentElement);
-      email[e.target.id] = ""; // reiniciamos
+
+      // email[e.target.id] = ""; // reiniciamos
+
+      e.target.id === 'cc' ?  email[ e.target.id ] = 'error' :  email[ evento.target.id ] = '';
+
+
+
       comprobarEmail(); // comprobamos el email
       return;
     }
@@ -92,9 +103,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     limpiarAlerta(e.target.parentElement);
 
-    //Asignar los valores
-    email[e.target.name] = e.target.value.trim().toLowerCase();
+    // Asignar valores al objeto email
+    if ( e.target.id === 'cc' && e.target.value.trim() === '' ){
 
+      email.cc = 'vacio'
+
+  }else{
+      
+      email[ e.target.id ] = e.target.value.trim().toLowerCase();
+
+  }
     // comprobar el objeto del email
     comprobarEmail();
   }
@@ -129,20 +147,24 @@ document.addEventListener("DOMContentLoaded", function () {
     return resultado;
   };
 
-  function comprobarEmail() {
-    if (Object.values(email).includes("") && Object.values(email).includes("false")) {
-      if (Object.values(email).includes("")) {
+  function comprobarEmail(){
+     
+    let vacio = Object.values(email).includes('');
+    let error = Object.values(email).includes('error');
+
+    if ( vacio || error ){
+
+        btnSubmit.classList.add('opacity-50');
+        btnSubmit.disabled = true;
         
-      }
-      btnSubmit.classList.add("opacity-50");
-      btnSubmit.disabled = true;
-      console.log(Object.values(email));
-      return;
+        return; // Desactiva el boton enviar y termina la validacion
     }
 
-    btnSubmit.classList.remove("opacity-50");
+    // En caso de que el objeto email este lleno se activa el boton enviar
+    btnSubmit.classList.remove('opacity-50');
     btnSubmit.disabled = false;
-  }
+
+}
 
   function reiniciarObjeto() {
     // reiniciar el objeto
@@ -150,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
     email.asunto = "";
     email.autor = "";
     email.mensaje = "";
-    email.cc = "";
+    email.cc = "vacio";
 
     formulario.reset();
     comprobarEmail();
