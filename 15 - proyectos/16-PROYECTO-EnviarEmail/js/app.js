@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     asunto: "",
     autor: "",
     mensaje: "",
-    cc: ""
+    cc: "false"
   };
 
   //Seleccionar los elementos de la interfaz
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    if ((e.target.id === "email") && !validarEmail(e.target.value)) {
+    if ((e.target.id === "email" || e.target.id === "cc") && !validarEmail(e.target.value)) {
 
       mostrarAlerta("El email no es valido", e.target.parentElement);
       email[e.target.id] = ""; // reiniciamos
@@ -130,10 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function comprobarEmail() {
-    if (Object.values(email).includes("")) {
+    if (Object.values(email).includes("") && Object.values(email).includes("false")) {
+      if (Object.values(email).includes("")) {
+        
+      }
       btnSubmit.classList.add("opacity-50");
       btnSubmit.disabled = true;
-      
+      console.log(Object.values(email));
       return;
     }
 
