@@ -27,6 +27,9 @@ const datosBusqueda = {
 
 }
 
+
+
+
 //EVENTOS
 
 // cuando cargue la web se llama una funcion
@@ -41,37 +44,31 @@ document.addEventListener('DOMContentLoaded', ()=>{
 // event listener para los select de busqueda
 marca.addEventListener('change', e=> {
     datosBusqueda.marca = e.target.value;
-    console.log(datosBusqueda);
+    filtrarAuto();
 })
 
 year.addEventListener('change', e=> {
     datosBusqueda.year = e.target.value;
-    console.log(datosBusqueda);
 })
 
 minimo.addEventListener('change', e=> {
     datosBusqueda.minimo = e.target.value;
-    console.log(datosBusqueda);
 })
 
 maximo.addEventListener('change', e=> {
     datosBusqueda.maximo = e.target.value;
-    console.log(datosBusqueda);
 })
 
 puertas.addEventListener('change', e=> {
     datosBusqueda.puertas = e.target.value;
-    console.log(datosBusqueda);
 })
 
 transmision.addEventListener('change', e=> {
     datosBusqueda.transmision = e.target.value;
-    console.log(datosBusqueda);
 })
 
 color.addEventListener('change', e=> {
     datosBusqueda.color = e.target.value;
-    console.log(datosBusqueda);
 })
 
 
@@ -109,4 +106,19 @@ function llenarSelect() {
         year.appendChild(opcion); // agrega las opciones de year al select
     }
 
+}
+
+
+// funcion que filtra en base a la busqueda
+function filtrarAuto() {
+    const resultado = autos.filter( filtraMarca );
+    console.log(resultado);
+}
+
+function filtraMarca(auto) {
+    const {marca} = datosBusqueda;
+    if (marca) {
+        return auto.marca === marca;
+    }
+    return auto;
 }
