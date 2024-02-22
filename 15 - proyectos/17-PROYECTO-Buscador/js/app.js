@@ -27,9 +27,6 @@ const datosBusqueda = {
 
 }
 
-
-
-
 //EVENTOS
 
 // cuando cargue la web se llama una funcion
