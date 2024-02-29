@@ -6,4 +6,9 @@ const producto = {
 }
 
 const productostring = JSON.stringify(producto);
-console.log(producto.nombre);
+localStorage.setItem('producto', productostring);
+
+const meses = ['Enero','Febrero','Marzo'];
+const mesesString = JSON.stringify(meses);
+
+localStorage.setItem('meses', mesesString);
