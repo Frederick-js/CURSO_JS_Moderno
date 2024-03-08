@@ -69,11 +69,24 @@ function crearHtml() {
   limpiarHTML();
   if (tweets.length > 0) {
     tweets.forEach((tweet) => {
+      //Agregar un boton de eliminar
+      const btnEliminar = document.createElement("a");
+      btnEliminar.classList.add("borrar-tweet");
+      btnEliminar.innerText = "x";
+
+      // agregar la funcion de eliminar
+      btnEliminar.onclick = () => {
+        borrarTweet(tweet.id);
+      };
+
       // crear el html
       const li = document.createElement("li");
 
       // anadir el texto
       li.innerText = tweet.tweet;
+
+      // Asignar el boton
+      li.appendChild(btnEliminar);
 
       // insertarlo o agregarlo en el html
       listaTweets.appendChild(li);
@@ -94,4 +107,10 @@ function limpiarHTML() {
   while (listaTweets.firstChild) {
     listaTweets.removeChild(listaTweets.firstChild);
   }
+}
+
+// borrar tweet
+function borrarTweet(id) {
+  tweets = tweets.filter((tweet) => tweet.id !== id); // revisa el array tweets con filter y trae todos los que sean diferente al id q pasamos
+  crearHtml();
 }
