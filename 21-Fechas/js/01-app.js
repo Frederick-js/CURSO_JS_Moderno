@@ -4,4 +4,6 @@ let valor;
 
 valor = diaHoy;
 
+valor = diaHoy.getFullYear(); // trae el year 1996
+
 console.log(valor);
