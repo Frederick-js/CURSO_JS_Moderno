@@ -70,24 +70,74 @@ UI.prototype.llenarOpciones = () => {
 };
 
 // Miestra alertar en pantalla
-UI.prototype.mostrarMensaje = (mensaje, tipo) => {
-  const div = document.createElement("div");
+UI.prototype.mostrarMensaje = function (mensaje, tipo) {
+  // valida si existe una alerta
+  const alerta =
+    document.querySelector(".error") || document.querySelector(".correcto");
+  if (!alerta) {
+    const div = document.createElement("div");
+    const btn = document.querySelector("#cotizar");
+    btn.disabled = true;
+    if (tipo === "error") {
+      div.classList.add("error");
+    } else {
+      div.classList.add("correcto");
+    }
+    div.classList.add("mensaje", "mt-10");
+    div.textContent = mensaje;
 
-  if (tipo === "error") {
-    div.classList.add("error");
-  } else {
-    div.classList.add("correcto");
+    // insertar en el html
+    const formulario = document.querySelector("#cotizar-seguro");
+    formulario.insertBefore(div, document.querySelector("#resultado"));
+
+    // luego de 3 segundos borramos el div
+    setTimeout(() => {
+      div.remove();
+      btn.disabled = false;
+    }, 3000);
   }
-  div.classList.add("mensaje", "mt-10");
-  div.textContent = mensaje;
+};
 
-  // insertar en el html
-  const formulario = document.querySelector("#cotizar-seguro");
-  formulario.insertBefore(div, document.querySelector("#resultado"));
+UI.prototype.mostrarResultado = function (total, seguro) {
+  const { marca, year, tipo } = seguro;
 
-  // luego de 3 segundos borramos el div
+  let textoMarca;
+  switch (marca) {
+    case "1":
+      textoMarca = "Americano";
+      break;
+    case "2":
+      textoMarca = "Asiatico";
+      break;
+    case "3":
+      textoMarca = "Europeo";
+      break;
+    default:
+      break;
+  }
+  // crear el resultado
+  const div = document.createElement("div");
+  div.classList.add("mt-10");
+
+  div.innerHTML = `
+  <p class="header"> Tu Resumen</p>
+  
+  <p class = "font-bold"> Marca: <span class="font-normal"> ${textoMarca}</span></p>
+  <p class = "font-bold"> Year: <span class="font-normal"> ${year}</span></p>
+  <p class = "font-bold"> Tipo de seguro: <span class="font-normal capitalize"> ${tipo}</span></p>
+  <p class = "font-bold"> Total: <span class="font-normal"> $${total}</span></p>
+  `;
+
+  const resultadoDiv = document.querySelector("#resultado");
+
+  // Mostrar el spinner
+  const spinner = document.querySelector("#cargando");
+  spinner.style.display = "block";
+
   setTimeout(() => {
-    div.remove();
+    disabled = false;
+    spinner.style.display = "none"; // se borra el spinner
+    resultadoDiv.appendChild(div); // se muestra el resultado
   }, 3000);
 };
 
@@ -124,9 +174,17 @@ function cotizarSeguro(e) {
 
   ui.mostrarMensaje("Cotizando...", "exito");
 
+  // ocultar las cotizaciones previas
+  const resultados = document.querySelector("#resultado div");
+
+  if (resultados != null) {
+    resultados.remove();
+  }
+
   // instanciar el seguro
   const seguro = new Seguro(marca, year, tipo);
-  seguro.cotizarSeguro();
+  const total = seguro.cotizarSeguro();
 
   // utilizar el prototype que va a cotizar
+  ui.mostrarResultado(total, seguro);
 }
