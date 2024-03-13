@@ -11,14 +11,8 @@
 
 # [Carrito](https://carrito-frederick-js.netlify.app/)
 
-# Enviar Email -
+# [Enviar Email](https://email-frederick-js.netlify.app/)
 
-https://email-frederick-js.netlify.app/
+# [Buscador de autos](https://buscador-frederick-js.netlify.app/)
 
-# Buscador de autos -
-
-https://buscador-frederick-js.netlify.app/
-
-# Seguro de autos -
-
-https://cotizador-seguro-autos-fai.netlify.app/
+# [Seguro de autos](https://cotizador-seguro-autos-fai.netlify.app/)
