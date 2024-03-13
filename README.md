@@ -9,7 +9,7 @@
 
 ## ⚒️ My projects:
 
-# [Carrito] - (https://carrito-frederick-js.netlify.app/)
+# [Carrito](https://carrito-frederick-js.netlify.app/)
 
 # Enviar Email -
 
