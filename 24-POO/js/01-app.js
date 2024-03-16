@@ -34,3 +34,4 @@ const Cliente2 = class {
 const juan2 = new Cliente2("juan", 400);
 console.log(juan2.mostrarInformacion());
 console.log(juan2);
+console.log(cliente);
