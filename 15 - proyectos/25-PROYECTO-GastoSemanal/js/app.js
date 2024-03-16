@@ -10,6 +10,20 @@ function eventlisteners() {
 }
 
 // classes
+class Presupuesto {
+  constructor(presupuesto) {
+    // se convierte a numero con Number
+    this.presupuesto = Number(presupuesto);
+    this.restante = Number(presupuesto);
+    this.gastos = [];
+  }
+}
+
+class UI {}
+
+// instanciar
+const ui = new UI();
+let presupuesto;
 
 // funciones
 
@@ -25,4 +39,8 @@ function preguntarPresupuesto() {
   ) {
     window.location.reload();
   }
+
+  // presupuesto valido
+  presupuesto = new Presupuesto(presupuestoUsuario);
+  console.log(presupuesto);
 }
