@@ -21,7 +21,6 @@ class Presupuesto {
 
   nuevoGasto(gasto) {
     this.gastos = [...this.gastos, gasto];
-    console.log(this.gastos);
   }
 }
 
@@ -56,6 +55,47 @@ class UI {
     setTimeout(() => {
       divMensaje.remove();
     }, 3000);
+  }
+
+  agregarGastoListado(gastos) {
+    // limpiar html
+    this.limpiarHTML();
+
+    // iterar sobre los gastos
+    gastos.forEach((gasto) => {
+      // body
+      const { cantidad, nombre, id } = gasto;
+
+      // crear un li
+      const nuevoGasto = document.createElement("li");
+      nuevoGasto.className =
+        "list-group-item d-flex justifi-content-between aling-items-center"; // esto son clases de bootstrap
+
+      /* estos dos codigos hacen lo mismo
+      nuevoGasto.setAttribute("data-id", id);
+      nuevoGasto.dataset.id = id;      // se utiliza mas esta forma
+      */
+      nuevoGasto.dataset.id = id;
+
+      // agregar el html del gasto
+
+      nuevoGasto.innerHTML = `${nombre} <span class="badge badge-primary badge-pill"> ${cantidad}</span>`;
+
+      // boton para borrar el gasto
+      const btnBorrar = document.createElement("button");
+      btnBorrar.classList.add("btn", "btn-danger", "borrar-gasto");
+      btnBorrar.textContent = "Borrar";
+      nuevoGasto.appendChild(btnBorrar);
+
+      // Agregar el HTML
+      gastoListado.appendChild(nuevoGasto);
+    });
+  }
+
+  limpiarHTML() {
+    while (gastoListado.firstChild) {
+      gastoListado.removeChild(gastoListado.firstChild);
+    }
   }
 }
 
@@ -111,6 +151,10 @@ function agregarGasto(e) {
 
   // Mensaje de todo bien
   ui.imprimirAlerta("Gasto agregado correctamente");
+
+  // Imprimir los gastos
+  const { gastos } = presupuesto;
+  ui.agregarGastoListado(gastos);
 
   // Reinicia el formulario
   formulario.reset();
