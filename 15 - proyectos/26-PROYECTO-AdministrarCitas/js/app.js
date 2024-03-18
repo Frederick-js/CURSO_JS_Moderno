@@ -11,6 +11,24 @@ const sintomasInput = document.querySelector("#sintomas");
 const formulario = document.querySelector("#nueva-cita");
 const contenedorCitas = document.querySelector("#citas");
 
+// creamos las dos clases  citas y  UI
+
+// class citas
+class Citas {
+  constructor() {
+    this.citas = [];
+  }
+}
+
+// class UI - interfaz
+class UI {
+  //
+}
+
+// instanciamos
+const ui = new UI();
+const administrarCitas = new Citas();
+
 // Registrar eventos
 eventListgeners();
 function eventListgeners() {
