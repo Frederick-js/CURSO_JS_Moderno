@@ -19,7 +19,6 @@ class Citas {
   }
 
   agregarCita(cita) {
-    console.log(cita);
     this.citas = [...this.citas, cita];
     console.log(this.citas);
   }
@@ -52,8 +51,27 @@ class UI {
     }, 5000);
   }
 
-  imprimirCitas(citas) {
-    console.log(citas);
+  imprimirCitas({ citas }) {
+    citas.forEach((cita) => {
+      const { mascota, propietario, telefono, fecha, hora, sintomas, id } =
+        cita; // aplicamos una destructuracion a cita
+      // creamos el div
+      const divCita = document.createElement("div");
+      // agregamos clases al div
+      divCita.classList.add("cita", "p-3");
+      divCita.dataset.id = id;
+
+      // scripting de los elementos de la cita
+      const mascotaParrafo = document.createElement("h2");
+      mascotaParrafo.classList.add("card-title", "font-weight-bolder");
+      mascotaParrafo.textContent = mascota;
+
+      // Agregar los parrafos al div cita
+      divCita.appendChild(mascotaParrafo);
+
+      // agregar las citas al html
+      contenedorCitas.appendChild(divCita);
+    });
   }
 
   //
