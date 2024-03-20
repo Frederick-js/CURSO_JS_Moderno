@@ -51,6 +51,11 @@ class UI {
       divMensaje.remove();
     }, 5000);
   }
+
+  imprimirCitas(citas) {
+    console.log(citas);
+  }
+
   //
 }
 
@@ -120,6 +125,9 @@ function nuevaCita(e) {
 
   // reiniciar el formulario
   formulario.reset();
+
+  // mostrar el html de las citas
+  ui.imprimirCitas(administrarCitas);
 }
 
 function reiniciarObjeto() {
