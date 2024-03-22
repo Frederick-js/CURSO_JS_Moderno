@@ -1,4 +1,4 @@
-// selectores
+// Obtención de elementos del DOM
 const pacienteInput = document.querySelector("#paciente");
 const propietaInput = document.querySelector("#propietario");
 const emailInput = document.querySelector("#email");
