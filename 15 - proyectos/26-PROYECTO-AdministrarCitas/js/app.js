@@ -26,11 +26,27 @@ const citaObj = {
 };
 
 function datosCita(e) {
+  // Esta función toma un evento como parámetro, que generalmente es un evento de cambio (por ejemplo, un evento 'change' en un input)
+
+  // El objeto citaObj se utiliza para almacenar los datos de la cita.
+  // Supongamos que citaObj es un objeto previamente definido fuera de esta función.
+  // Al asignarle un valor a una propiedad con el nombre del target del evento, estamos actualizando el valor correspondiente en el objeto citaObj.
   citaObj[e.target.name] = e.target.value;
-  console.log(citaObj);
 }
 
 function submitCita(e) {
   e.preventDefault();
-  console.log("submit al formulario");
+
+  const { paciente, propietario, email, sintomas, fecha } = citaObj;
+  if (
+    paciente.trim() === "" ||
+    propietario.trim() === "" ||
+    email.trim() === "" ||
+    sintomas.trim() === "" ||
+    fecha.trim() === ""
+  ) {
+    //  .trim() con esa forma podemos validar que no dejen los usuarios espacios vacios
+    console.log("Todos los campos son obligatorios");
+    return;
+  }
 }
