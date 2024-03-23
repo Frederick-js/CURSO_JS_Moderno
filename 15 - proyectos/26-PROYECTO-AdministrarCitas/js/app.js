@@ -37,15 +37,7 @@ function datosCita(e) {
 function submitCita(e) {
   e.preventDefault();
 
-  const { paciente, propietario, email, sintomas, fecha } = citaObj;
-  if (
-    paciente.trim() === "" ||
-    propietario.trim() === "" ||
-    email.trim() === "" ||
-    sintomas.trim() === "" ||
-    fecha.trim() === ""
-  ) {
-    //  .trim() con esa forma podemos validar que no dejen los usuarios espacios vacios
+  if (Object.values(citaObj).some((valor) => valor.trim() === "")) {
     console.log("Todos los campos son obligatorios");
     return;
   }
